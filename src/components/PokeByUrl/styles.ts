@@ -7,13 +7,17 @@ export const Conatiner = styled.div`
   padding: 1rem;
   background: #31363F;
   margin: 0.5rem;
+  flex-grow: 1;
   *{
     background: #31363F;
   }
   
+  transition: all 0.5s;
+
   &:hover{
-    transition: all 0.3s;
-    transform: scale(1.1);
+    transition: all 0.5s;
+    transform: scale(1.05);
+    cursor: pointer;
   }
 `
 

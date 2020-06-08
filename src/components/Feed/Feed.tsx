@@ -50,7 +50,6 @@ const Feed: React.FC = () => {
         <S.Button onClick={handlePrevClick}>prev</S.Button>
         <S.Button onClick={handleNextClick}>next</S.Button>
       </S.ButtonWrapper>
-
     </S.Container>
   )
 }
