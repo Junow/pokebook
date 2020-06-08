@@ -23,9 +23,11 @@ const PokeByUrl: React.FC<Props> = ({ url }) => {
   return (
     <S.Conatiner>
       <div><Span size='xxxs'>No.</Span> {data.id}</div>
-      <div>name: {data.name}</div>
-      <div>species: {data.species.name}</div>
       <S.Img src={data.sprites.front_default}/>
+      <div>name: {data.name}</div>
+      <div>height: {data.height}</div>
+      <div>weight: {data.weight}</div>
+      <div>abilities: {data.abilities.map((v) => v.ability.name).join(', ')}</div>
     </S.Conatiner>
   )
 }
