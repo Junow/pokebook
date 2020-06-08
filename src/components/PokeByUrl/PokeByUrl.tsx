@@ -3,6 +3,7 @@ import useSwr from 'swr'
 import { ResponseByNameAPI } from 'types/response'
 import { fetcher } from 'utils/request'
 import { Span } from 'components/Simple'
+import Loading from 'components/Loading'
 import * as S from './styles'
 
 interface Props{
@@ -18,7 +19,7 @@ const PokeByUrl: React.FC<Props> = ({ url }) => {
   }
 
   if (!data) {
-    return <div>loading...</div>
+    return <Loading/>
   }
   return (
     <S.Conatiner>

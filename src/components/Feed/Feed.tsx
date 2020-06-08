@@ -7,6 +7,7 @@ import {
 } from 'utils/request'
 import { ResponseDefaultAPI } from 'types/response'
 import PokeByUrl from 'components/PokeByUrl'
+import Loading from 'components/Loading'
 import * as S from './styles'
 
 const Feed: React.FC = () => {
@@ -31,7 +32,7 @@ const Feed: React.FC = () => {
     return <div>error...</div>
   }
   if (!data) {
-    return <div>loading...</div>
+    return <Loading/>
   }
 
   return (
