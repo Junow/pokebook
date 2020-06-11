@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import useSwr from 'swr'
 import { ResponseByNameAPI } from 'types/response'
 import { fetcher } from 'utils/request'
 import { Span } from 'components/Simple'
 import Loading from 'components/Loading'
+import spinner from 'assets/loading.gif'
 import * as S from './styles'
 
 interface Props{
@@ -13,6 +14,7 @@ const PokeByUrl: React.FC<Props> = ({ url }) => {
   const {
     data, error,
   } = useSwr<ResponseByNameAPI>(url, fetcher)
+  const [isImageLoading, setIsImageLoading] = useState<boolean>(true)
 
   if (error) {
     return <div>error...</div>
@@ -24,7 +26,14 @@ const PokeByUrl: React.FC<Props> = ({ url }) => {
   return (
     <S.Conatiner>
       <div><Span size='xxxs'>No.</Span> {data.id}</div>
-      <S.Img src={data.sprites.front_default}/>
+      {
+        isImageLoading && <img src={spinner}/>
+      }
+      <S.Img
+        src={data.sprites.front_default}
+        onLoad={() => setIsImageLoading(false)}
+        isImageLoading={isImageLoading}
+      />
       <div>name: {data.name}</div>
       <div>height: {data.height}</div>
       <div>weight: {data.weight}</div>

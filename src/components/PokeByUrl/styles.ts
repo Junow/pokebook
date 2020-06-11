@@ -21,8 +21,12 @@ export const Conatiner = styled.div`
   }
 `
 
-export const Img = styled.img`
+interface ImgProp {
+  isImageLoading: boolean
+}
+export const Img = styled.img<ImgProp>`
   width: fit-content;
   margin: auto;
+  display: ${({ isImageLoading }) => (isImageLoading ? 'none' : 'block')}
 `
 
