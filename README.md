@@ -8,6 +8,10 @@
 - data fetching - [SWR](https://github.com/vercel/swr)
 - deployment - [Vercel](https://vercel.com/dashboard)
 
+### Docs
+
+- [Image Lazy Loading](./docs/image-lazy-loading.md)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
