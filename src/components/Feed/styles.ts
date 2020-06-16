@@ -12,6 +12,9 @@ export const Content = styled.div`
   flex-wrap: wrap;
   width: 90%;
   margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  justify-items: center;
 `
 
 export const ButtonWrapper = styled.div`
