@@ -4,9 +4,8 @@ import { ResponseByNameAPI } from 'types/response'
 import { fetcher } from 'utils/request'
 import { Span } from 'components/Simple'
 import Loading from 'components/Loading'
-import ImageWithGIF from 'components/ImageWithGIF'
-import ImageWithDataSrc from 'components/ImageWithDataSrc'
 import LazyImage from 'components/LazyImage'
+import Slider from 'components/Slider'
 import * as S from './styles'
 
 interface Props{
@@ -16,6 +15,22 @@ const PokeByUrl: React.FC<Props> = ({ url }) => {
   const {
     data, error,
   } = useSwr<ResponseByNameAPI>(url, fetcher)
+
+  const [imgUrls, setImgUrls] = React.useState<string[]>([])
+
+  React.useEffect(() => {
+    if (data) {
+      const { sprites } = data
+      const spriteArr: string[] = []
+      Object.keys(sprites).forEach((key) => {
+        const value = sprites[key]
+        if (value === null) return
+        if (value === undefined) return
+        spriteArr.push(value as string)
+      })
+      setImgUrls(spriteArr)
+    }
+  }, [data])
 
   if (error) {
     return <div>error...</div>
@@ -27,13 +42,8 @@ const PokeByUrl: React.FC<Props> = ({ url }) => {
   return (
     <S.Conatiner>
       <div><Span size='xxxs'>No.</Span> {data.id}</div>
-      {/* <ImageWithGIF
-        src={data.sprites.front_default}
-      /> */}
-      {/* <ImageWithDataSrc
-        src={data.sprites.front_default}
-      /> */}
-      <LazyImage src={data.sprites.front_default}/>
+      {/* <LazyImage src={data.sprites.front_default}/> */}
+      <Slider imgUrls={imgUrls}/>
       <div>name: {data.name}</div>
       <div>height: {data.height}</div>
       <div>weight: {data.weight}</div>

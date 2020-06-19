@@ -12,11 +12,7 @@ export const Conatiner = styled.div`
     background: #31363F;
   }
   
-  transition: all 0.5s;
-
   &:hover{
-    transition: all 0.5s;
-    transform: scale(1.05);
     cursor: pointer;
   }
 `
