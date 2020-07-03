@@ -39,11 +39,11 @@ const PokeByUrl: React.FC<Props> = ({ url }) => {
   if (!data) {
     return <Loading/>
   }
+
   return (
     <S.Conatiner>
       <div><Span size='xxxs'>No.</Span> {data.id}</div>
-      {/* <LazyImage src={data.sprites.front_default}/> */}
-      <Slider imgUrls={imgUrls}/>
+      <LazyImage src={data.sprites.front_default} />
       <div>name: {data.name}</div>
       <div>height: {data.height}</div>
       <div>weight: {data.weight}</div>

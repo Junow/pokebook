@@ -4,7 +4,7 @@ import React, {
 import background from 'assets/background.png'
 
 interface Props {
-  src: string
+  src: string | null
 }
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function throttle(delay: number, event: any) {
@@ -53,6 +53,7 @@ const LazyImage: React.FC<Props> = ({ src }) => {
         ref={imgRef}
         data-src={src}
         src={background}
+        alt="pokemon"
         style={{
           width: 'fit-content',
           margin: 'auto',

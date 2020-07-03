@@ -29,15 +29,24 @@ const Slider: React.FC<Props> = ({ imgUrls }) => {
 
   return (
     <S.Container>
-      <S.Prev onClick={handlePrevClick}>prev</S.Prev>
       <S.ImgWrapper>
         <S.Convey ref={conveyRef}>
           {
-            imgUrls.map((v) => <S.Img key={v} src={v}/>)
+            imgUrls.map((v) => (
+              <div key={v}>
+                <S.Img src={v}/>
+              </div>
+            ))
           }
         </S.Convey>
       </S.ImgWrapper>
-      <S.Next onClick={handleNextClick}>next</S.Next>
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-evenly',
+      }}>
+        <S.Prev onClick={handlePrevClick}>prev</S.Prev>
+        <S.Next onClick={handleNextClick}>next</S.Next>
+      </div>
     </S.Container>
   )
 }
