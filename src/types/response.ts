@@ -40,7 +40,7 @@ export type SpritesKeys = 'back_default' | 'back_female' | 'back_shiny' | 'back_
 export type Sprites = {[key: string]: string | null}
 
 export interface Stats{
-  base_stats: number,
+  base_stat: number,
   effort: number
   stat: NameUrl
 }
