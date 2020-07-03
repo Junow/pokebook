@@ -1,6 +1,4 @@
-import React, {
-  useEffect, useState,
-} from 'react'
+import React, { useState } from 'react'
 import useSWR from 'swr'
 import {
   fetcher, URL,
@@ -8,6 +6,7 @@ import {
 import { ResponseDefaultAPI } from 'types/response'
 import PokeByUrl from 'components/PokeByUrl'
 import Loading from 'components/Loading'
+import { useHistory } from 'react-router'
 import * as S from './styles'
 
 const Feed: React.FC = () => {
@@ -15,7 +14,7 @@ const Feed: React.FC = () => {
   const {
     data, error,
   } = useSWR<ResponseDefaultAPI>(apiURL, fetcher)
-
+  const history = useHistory()
   const handlePrevClick = () => {
     if (data?.previous) {
       setApiURL(data.previous)
@@ -42,7 +41,9 @@ const Feed: React.FC = () => {
         data.results.map(({
           name, url,
         }) => (
-          <PokeByUrl key={name} url={url}/>
+          <div key={name} onClick={() => history.push(`/${name}`)}>
+            <PokeByUrl url={url}/>
+          </div>
         ))
         }
       </S.Content>
