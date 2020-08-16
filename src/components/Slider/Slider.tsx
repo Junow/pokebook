@@ -1,7 +1,7 @@
 import React, {
   useEffect, useRef, useState,
 } from 'react'
-import * as S from './styles'
+import * as S from './Slider.styled'
 
 interface Props{
   imgUrls: string[];

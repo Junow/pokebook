@@ -5,6 +5,7 @@ import background from 'assets/background.png'
 
 interface Props {
   src: string | null
+  style?: React.CSSProperties
 }
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function throttle(delay: number, event: any) {
@@ -19,7 +20,9 @@ function throttle(delay: number, event: any) {
     }
   }
 }
-const LazyImage: React.FC<Props> = ({ src }) => {
+const LazyImage: React.FC<Props> = ({
+  src, style,
+}) => {
   const imgRef = useRef <HTMLImageElement>(null)
   const scrollHandler = () => {
     if (!imgRef || !imgRef.current) return
@@ -47,21 +50,21 @@ const LazyImage: React.FC<Props> = ({ src }) => {
       window.removeEventListener('scroll', throttle(200, scrollHandler))
     }
   }, [])
+
   return (
-    <>
-      <img
-        ref={imgRef}
-        data-src={src}
-        src={background}
-        alt="pokemon"
-        style={{
-          width: 'fit-content',
-          margin: 'auto',
-          transition: 'opacity 0.3s',
-          opacity: 0,
-        }}
-      />
-    </>
+    <img
+      ref={imgRef}
+      data-src={src}
+      src={background}
+      alt="pokemon"
+      style={{
+        width: 'fit-content',
+        margin: 'auto',
+        transition: 'opacity 0.3s',
+        opacity: 0,
+        ...style,
+      }}
+    />
   )
 }
 

@@ -46,7 +46,10 @@ export interface Stats{
 }
 export interface Types{
   slot: number
-  type: NameUrl
+  type: {
+    name: 'normal' | 'fighting' | 'flying' | 'poison' | 'ground' | 'rock' | 'bug' | 'ghost' | 'steel' | 'fire' | 'water' | 'grass' | 'electric' | 'psychic' | 'ice' | 'dragon' | 'dark' | 'fairy' | 'unkwnon' | 'shadow'
+    url: string
+  }
 }
 export interface ResponseByNameAPI {
   abilities: Ability[]

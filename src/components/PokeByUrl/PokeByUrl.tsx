@@ -6,7 +6,7 @@ import { Span } from 'components/Simple'
 import Loading from 'components/Loading'
 import LazyImage from 'components/LazyImage'
 import Slider from 'components/Slider'
-import * as S from './styles'
+import * as S from './PokeByUrl.styled'
 
 interface Props{
   url: string

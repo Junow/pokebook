@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import useSWR from 'swr'
-import {
-  fetcher, URL,
-} from 'utils/request'
+import { fetcher } from 'utils/request'
 import { ResponseDefaultAPI } from 'types/response'
 import PokeByUrl from 'components/PokeByUrl'
 import Loading from 'components/Loading'
 import { useHistory } from 'react-router'
-import * as S from './styles'
+import * as S from './Feed.styled'
 
 const Feed: React.FC = () => {
   const [apiURL, setApiURL] = useState<string>('https://pokeapi.co/api/v2/pokemon?limit=20&offset=0')

@@ -4,7 +4,10 @@ import useSwr from 'swr'
 import Loading from 'components/Loading'
 import { fetcher } from 'utils/request'
 import { ResponseByNameAPI } from 'types/response'
-import * as S from './styles'
+import LazyImage from 'components/LazyImage'
+import { capitalize } from 'utils/common'
+import TypeBadge from 'components/TypeBadge'
+import * as S from './PokeDetail.styled'
 
 interface Props{
   name: string
@@ -27,36 +30,40 @@ const PokeDetil: React.FC<Props> = ({ name }) => {
   }
 
   const types = data.types.map((v) => v.type.name).join(', ') || 'none'
-  const ability = data.abilities.map((v) => v.ability.name).join(', ') || 'none'
-  const forms = data.forms.map((v) => v.name).join(', ') || 'none'
-  const gameVersions = data.game_indices.map((v) => v.version.name).join(', ') || 'none'
-  const items = data.held_items.map((v) => v.item.name).join(', ') || 'none'
-  const baseStats = data.stats.map((v) => v.base_stat).join(', ') || 'none'
-  const efforts = data.stats.map((v) => `${v.effort}`).join(', ') || 'none'
-  const stats = data.stats.map((v) => v.stat.name).join(', ') || 'none'
 
   return (
     <S.Container>
+      <S.H1>#{data.id} {capitalize(data.name)}</S.H1>
+      <div style={{
+        display: 'flex', width: '100%',
+      }}>
+        {
+          data.types.map((type) => <TypeBadge key={type.type.name} type={type.type.name}/>)
+        }
+      </div>
       {
-        data.sprites.back_default && <S.Img alt='pokemon' src={data.sprites.back_default}/>
+        data.sprites.back_default && <LazyImage src={data.sprites.back_default} style={{ width: '10rem' }}/>
       }
       <S.Detail>
-        <figcaption>id: {data.id}</figcaption>
-        <figcaption>name: {data.name}</figcaption>
-        <figcaption>species: {data.species.name}</figcaption>
-        <figcaption>types: {types}</figcaption>
-        <figcaption>height: {data.height}</figcaption>
-        <figcaption>weight: {data.weight}</figcaption>
-        <figcaption>base experience: {data.base_experience}</figcaption>
-        <figcaption>order: {data.order}</figcaption>
-        <figcaption>ability: {ability}</figcaption>
-        <figcaption>forms: {forms}</figcaption>
-        <figcaption>game versions: {gameVersions}</figcaption>
-        <figcaption>items: {items}</figcaption>
-        <figcaption>location: {data.location_area_encounters}</figcaption>
-        <figcaption>base stats: {baseStats}</figcaption>
-        <figcaption>efforts: {efforts}</figcaption>
-        <figcaption>stats: {stats}</figcaption>
+        <S.Li>types: {types}</S.Li>
+        <S.Li>height: {(data.height * 10) / 100} m</S.Li>
+        <S.Li>weight: {data.weight / 10} kg</S.Li>
+        {
+          data.stats.map((stat) => (
+              <S.Li key={stat.stat.name}>
+                <S.Row>
+                  <S.Span>
+                    <strong>{stat.stat.name}</strong>
+                    </S.Span>
+                  <S.Stat>
+                    <S.Overlay/>
+                    <S.Bar color={'#CD5241'} amount={stat.base_stat}/>
+                  </S.Stat>
+                </S.Row>
+              </S.Li>
+
+          ))
+        }
       </S.Detail>
     </S.Container>
   )
