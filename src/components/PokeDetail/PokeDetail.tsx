@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import React from 'react'
 import useSwr from 'swr'
-import Loading from 'components/Loading'
+import LoaderSpinner from 'components/common/LoaderSpinner'
 import { fetcher } from 'utils/request'
 import { ResponseByNameAPI } from 'types/response'
 import LazyImage from 'components/LazyImage'
@@ -26,7 +26,7 @@ const PokeDetil: React.FC<Props> = ({ name }) => {
     return <div>error</div>
   }
   if (!data) {
-    return <Loading/>
+    return <LoaderSpinner/>
   }
 
   const types = data.types.map((v) => v.type.name).join(', ') || 'none'

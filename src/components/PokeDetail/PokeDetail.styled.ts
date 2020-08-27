@@ -9,6 +9,7 @@ export const Container = styled.section`
   justify-content: center;
   margin: auto;
   padding: 1rem;
+  min-width: 25rem;
 `
 
 export const Img = styled.img`
