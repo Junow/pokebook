@@ -3,7 +3,7 @@ import useSWR from 'swr'
 import { fetcher } from 'utils/request'
 import { ResponseDefaultAPI } from 'types/response'
 import PokeByUrl from 'components/PokeByUrl'
-import Loading from 'components/Loading'
+import LoaderSpinner from 'components/common/LoaderSpinner'
 import { useHistory } from 'react-router'
 import * as S from './Feed.styled'
 
@@ -28,8 +28,9 @@ const Feed: React.FC = () => {
   if (error) {
     return <div>error...</div>
   }
+
   if (!data) {
-    return <Loading/>
+    return <LoaderSpinner/>
   }
 
   return (

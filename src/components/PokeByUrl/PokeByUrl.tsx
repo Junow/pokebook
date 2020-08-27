@@ -3,7 +3,7 @@ import useSwr from 'swr'
 import { ResponseByNameAPI } from 'types/response'
 import { fetcher } from 'utils/request'
 import { Span } from 'components/Simple'
-import Loading from 'components/Loading'
+import LoaderSpinner from 'components/common/LoaderSpinner'
 import LazyImage from 'components/LazyImage'
 import Slider from 'components/Slider'
 import * as S from './PokeByUrl.styled'
@@ -37,7 +37,7 @@ const PokeByUrl: React.FC<Props> = ({ url }) => {
   }
 
   if (!data) {
-    return <Loading/>
+    return <LoaderSpinner/>
   }
 
   return (
